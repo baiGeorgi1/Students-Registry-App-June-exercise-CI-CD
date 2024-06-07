@@ -44,7 +44,7 @@ jobs:
     deploy_on_Render:
         runs-on: ubuntu-latest
         # To deploy on production we MUST to push from main, else we should deploy to Test area:
-        if: github.ref == 'refs/head/main'
+        if: github.ref == 'refs/heads/main'
         #  end execution
         needs: integration-test
 
