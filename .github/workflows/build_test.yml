@@ -5,7 +5,8 @@ on:
         branches: ["main"]
     pull_request:
         branches: ["main"]
-    #  Trigger manualy
+
+# With this we can trigger manually
     workflow_dispatch:
 
 jobs:
