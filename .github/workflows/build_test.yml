@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build and Test and Deploy
 
 on:
     push:
@@ -6,7 +6,7 @@ on:
     pull_request:
         branches: ["main"]
 
-# With this we can trigger manually
+    # With this we can trigger manually
     workflow_dispatch:
 
 jobs:
@@ -40,3 +40,17 @@ jobs:
               run: npm install
             - name: Run Integration Tests
               run: npm test
+
+    deploy_on_Render:
+        runs-on: ubuntu-latest
+        # To deploy on production we MUST to push from main, else we should deploy to Test area:
+        if: github.ref == 'refs/head/main'
+        #  end execution
+        needs: integration-test
+
+        steps:
+            - name: Deploy to production
+              uses: johnbeynon/render-deploy-action@v0.0.8
+              with:
+                  service-id: ${{secrets.MY_RENDER_ID}}
+                  api-key: ${{secrets.MY_RENDER_API_KEY}}
