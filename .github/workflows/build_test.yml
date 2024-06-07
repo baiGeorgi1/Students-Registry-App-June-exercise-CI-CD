@@ -7,7 +7,7 @@ on:
         branches: ["main"]
 
 jobs:
-    npm-security-tests:
+    npm_security-tests:
         runs-on: ubuntu-latest
         steps:
             - name: Chekout of repo
@@ -24,7 +24,7 @@ jobs:
 
     integration-tests:
         runs-on: ubuntu-latest
-        needs: npm-security-tests
+        needs: npm_security-tests
         steps:
             - name: Chekout of repo
               uses: actions/checkout@v4
